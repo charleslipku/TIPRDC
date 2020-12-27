@@ -5,6 +5,11 @@ This repo is the PyTorch code for our Best Student Paper in KDD 2020 ([TIPRDC: T
 
 ### Dependencies
 ---
+Tested stable dependencies:
+* PyTorch 1.0
+* Python 3.6
+* Numpy
+* [visdom](https://github.com/facebookresearch/visdom)
 
 ### Dataset
 ---
