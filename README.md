@@ -14,7 +14,7 @@ The success of deep learning partially benefits from the availability of various
 
 <p align="center">
   <img src="https://github.com/charleslipku/TIPRDC/blob/main/framework.png">
-   <b>The hybrid learning method for training the fea- ture extractor.</b><br>
+   <b>The hybrid learning method for training the feature extractor.</b><br>
 </p>
 
 
