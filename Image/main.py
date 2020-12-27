@@ -157,33 +157,6 @@ def get_zdecoder(FE_path):
     return DC
 
 
-def get_zudecoder(FE_path):
-    FE = torch.load(FE_path)
-    for p in FE.parameters():
-        p.requires_grad = False
-    DC = decoder.ZUDecoder()
-    if torch.cuda.is_available():
-        if torch.cuda.device_count() > 1:
-            FE = torch.nn.DataParallel(FE)
-            DC = torch.nn.DataParallel(DC)
-        FE = FE.cuda()
-        DC = DC.cuda()
-    try:
-        for epoch in range(total_epoch):
-            print("epoch %d" % epoch)
-            cur_lr = adjust_learning_rate_decoder(epoch, lr)
-            DC = train_decoder.train_zudecoder(FE, DC, data_train_loader, cur_lr, vis)
-    except KeyboardInterrupt:
-        pass
-    if torch.cuda.device_count() > 1:
-        torch.save(DC.module, "Models/age/decoder/decoder_WithLabel_lambda01.pth")
-    else:
-        torch.save(DC, "Models/age/decoder/decoder_WithLabel_lambda01.pth")
-
-    np.array(train_decoder.zu_global_loss).tofile('Result/age/decoder/loss_WithLabel_lambda01.np')
-    return DC
-
-
 def get_classifier(FE_path):
     FE = torch.load(FE_path)
     for p in FE.parameters():
@@ -269,7 +242,6 @@ if __name__ == '__main__':
     # FE = get_FE()
     # FE = get_ZFE()
     # ZD = get_zdecoder("Models/gender/extractor/FE_lambda0.pth")
-    # ZUD = get_zudecoder("Models/FE.pth")
     # CF = get_classifier("Models/mix/extractor/FE_lambda10.pth")
 
     image_list = [2, 5, 9, 16, 19, 31, 20, 26, 54, 77, 79, 82]
