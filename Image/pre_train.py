@@ -189,20 +189,10 @@ def get_FE_CF():
     if torch.cuda.device_count() > 1:
         torch.save(FE.module, "Models/mix/pre_train/FE.pth")
         torch.save(CF.module, "Models/mix/pre_train/CF.pth")
-        # torch.save(FE.module, "Models/pre_train/FE.pth")
-        # torch.save(CF.module, "Models/pre_train/CF.pth")
     else:
         torch.save(FE, "Models/mix/pre_train/FE.pth")
         torch.save(CF, "Models/mix/pre_train/CF.pth")
-        # torch.save(FE, "Models/pre_train/FE.pth")
-        # torch.save(CF, "Models/pre_train/CF.pth")
 
-    np.array(train_loss).tofile('Result/mix/pre_train/train_loss.np')
-    np.array(test_loss).tofile('Result/mix/pre_train/test_loss.np')
-    np.array(test_acc).tofile('Result/mix/pre_train/test_acc.np')
-    # np.array(train_loss).tofile('Result/pre_train/train_loss.np')
-    # np.array(test_loss).tofile('Result/pre_train/test_loss.np')
-    # np.array(test_acc).tofile('Result/pre_train/test_acc.np')
     return FE, CF
 
 
@@ -230,9 +220,6 @@ def get_MI():
         torch.save(MI.module, "Models/pre_train/MI.pth")
     else:
         torch.save(MI, "Models/pre_train/MI.pth")
-
-    np.array(train_loss).tofile('Result/pre_train/train_mi.np')
-    np.array(test_loss).tofile('Result/pre_train/test_mi.np')
     return MI
 
 
