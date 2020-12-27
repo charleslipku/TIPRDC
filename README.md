@@ -20,7 +20,11 @@ Tested stable dependencies:
 
 ### Dataset
 ---
-
+* Image Dataset
+  * [Large-scale CelebFaces Attributes (CelebA) Dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
+  * [Labeled Faces in the Wild (LFW) Dataset](http://vis-www.cs.umass.edu/lfw/)
+* Text Dataset
+  * [Dialectal Tweets Dataset](http://slanglab.cs.umass.edu/TwitterAAE/)
 
 ### How to Train from Scratch
 ---
