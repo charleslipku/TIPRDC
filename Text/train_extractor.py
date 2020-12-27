@@ -14,7 +14,7 @@ cf_test_loss = []
 cf_test_acc = []
 
 
-def train(FE, CF, MI, data_train_loader, current_lr, vis=None):
+def train(FE, CF, MI, data_train_loader, current_lr, vis=None, lambda=0.66):
     FE.train()
     CF.train()
     MI.train()
@@ -44,7 +44,7 @@ def train(FE, CF, MI, data_train_loader, current_lr, vis=None):
         output = CF(z, sentences_length)
         loss_target = criterion(output, labels)
         loss_jsd = -info_loss(MI, x, sentences_length, z, u, x_prime, x_prime_length)
-        loss = -loss_target + 0.5*loss_jsd
+        loss = - lambda * loss_target + (1. - lambda) * loss_jsd
 
         FE_optimizer.zero_grad()
         loss.backward(retain_graph=True)
