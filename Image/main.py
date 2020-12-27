@@ -238,22 +238,7 @@ def show_result(FE_path, DC_path, save_path, data_test_loader, withU=False, imag
 
 
 if __name__ == '__main__':
-    # run get_FE or get_ZFE to get a feature extractor whether or not constrained by DIM info
-    # FE = get_FE()
-    # FE = get_ZFE()
-    # ZD = get_zdecoder("Models/gender/extractor/FE_lambda0.pth")
-    # CF = get_classifier("Models/mix/extractor/FE_lambda10.pth")
-
-    image_list = [2, 5, 9, 16, 19, 31, 20, 26, 54, 77, 79, 82]
-    attribute_list = ['age', 'gender']
-    rate_list = ['0', '01', '05', '1', '10']
-    for image in image_list:
-        if not os.path.exists('images/%d' % image):
-            os.makedirs('images/%d' % image)
-        for attribute in attribute_list:
-            for rate in rate_list:
-              show_result("Models/%s/extractor/FE_lambda%s.pth" % (attribute, rate),
-                          "Models/%s/decoder/decoder_WithoutLabel_lambda%s.pth" % (attribute, rate),
-                          "images/%d/%s_lambda%s.eps" % (image, attribute, rate),
-                          data2_test_loader,
-                          image_counter=image)
+    # run get_FE or get_ZFE to get a feature extractor constrained by DIM info
+    FE = get_FE()
+    ZD = get_zdecoder("Models/gender/extractor/FE.pth")
+    CF = get_classifier("Models/mix/extractor/FE.pth")
