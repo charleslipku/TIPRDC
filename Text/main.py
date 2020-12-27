@@ -149,7 +149,6 @@ def get_classifier(FE_path):
 
 
 if __name__ == '__main__':
-    # run get_FE or get_ZFE to get a feature extractor whether or not constrained by DIM info
-    # FE = get_FE()
-    # FE = get_ZFE()
+    # run get_FE or get_ZFE to get a feature extractor constrained by DIM info
+    FE = get_FE()
     CF = get_classifier("Models/extractor/FE_lambda05.pth")
