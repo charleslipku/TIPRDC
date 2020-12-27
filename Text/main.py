@@ -71,19 +71,14 @@ def get_FE():
     except KeyboardInterrupt:
         pass
     if torch.cuda.device_count() > 1:
-        torch.save(FE.module, "Models/extractor/FE_lambda05.pth")
-        torch.save(CF.module, "Models/extractor/FE_CF_lambda05.pth")
-        torch.save(MI.module, "Models/extractor/FE_MI_lambda05.pth")
+        torch.save(FE.module, "Models/extractor/FE.pth")
+        torch.save(CF.module, "Models/extractor/FE_CF.pth")
+        torch.save(MI.module, "Models/extractor/FE_MI.pth")
     else:
-        torch.save(FE, "Models/extractor/FE_lambda05.pth")
-        torch.save(CF, "Models/extractor/FE_CF_lambda05.pth")
-        torch.save(MI, "Models/extractor/FE_MI_lambda05.pth")
+        torch.save(FE, "Models/extractor/FE.pth")
+        torch.save(CF, "Models/extractor/FE_CF.pth")
+        torch.save(MI, "Models/extractor/FE_MI.pth")
 
-    np.array(train_extractor.global_loss).tofile('Result/extractor/loss_extractor_lambda05.np')
-    np.array(train_extractor.target_loss).tofile('Result/extractor/loss_target_lambda05.np')
-    np.array(train_extractor.information).tofile('Result/extractor/loss_information_lambda05.np')
-    np.array(train_extractor.cf_test_loss).tofile('Result/extractor/loss_extractor_lambda05_test.np')
-    np.array(train_extractor.cf_test_acc).tofile('Result/extractor/acc_extractor_lambda05_test.np')
     return FE
 
 
@@ -105,15 +100,12 @@ def get_ZFE():
     except KeyboardInterrupt:
         pass
     if torch.cuda.device_count() > 1:
-        torch.save(FE.module, "Models/extractor/FE_lambda0.pth")
-        torch.save(CF.module, "Models/extractor/FE_CF_lambda0.pth")
+        torch.save(FE.module, "Models/extractor/FE.pth")
+        torch.save(CF.module, "Models/extractor/FE_CF.pth")
     else:
-        torch.save(FE, "Models/extractor/FE_lambda0.pth")
-        torch.save(CF, "Models/extractor/FE_CF_lambda0.pth")
+        torch.save(FE, "Models/extractor/FE.pth")
+        torch.save(CF, "Models/extractor/FE_CF.pth")
 
-    np.array(train_extractor.global_loss).tofile('Result/extractor/loss_extractor_lambda0.np')
-    np.array(train_extractor.cf_test_loss).tofile('Result/extractor/loss_extractor_lambda0_test.np')
-    np.array(train_extractor.cf_test_acc).tofile('Result/extractor/acc_extractor_lambda0_test.np')
     return FE
 
 
@@ -138,13 +130,10 @@ def get_classifier(FE_path):
         pass
 
     if torch.cuda.device_count() > 1:
-        torch.save(CF.module, "Models/mention/Classifier_lambda05.pth")
+        torch.save(CF.module, "Models/mention/Classifier.pth")
     else:
-        torch.save(CF, "Models/mention/Classifier_lambda05.pth")
+        torch.save(CF, "Models/mention/Classifier.pth")
 
-    np.array(train_extractor.cf_train_loss).tofile('Result/mention/loss_classifier_lambda05_train.np')
-    np.array(train_extractor.cf_test_loss).tofile('Result/mention/loss_classifier_lambda05_test.np')
-    np.array(train_extractor.cf_test_acc).tofile('Result/mention/acc_classifier_lambda05_test.np')
     return CF
 
 
