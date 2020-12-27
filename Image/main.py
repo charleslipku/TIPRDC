@@ -84,19 +84,14 @@ def get_FE():
     except KeyboardInterrupt:
         pass
     if torch.cuda.device_count() > 1:
-        torch.save(FE.module, "Models/mix/extractor/FE_lambda10.pth")
-        torch.save(CF.module, "Models/mix/extractor/FE_CF_lambda10.pth")
-        torch.save(MI.module, "Models/mix/extractor/FE_MI_lambda10.pth")
+        torch.save(FE.module, "Models/mix/extractor/FE.pth")
+        torch.save(CF.module, "Models/mix/extractor/FE_CF.pth")
+        torch.save(MI.module, "Models/mix/extractor/FE_MI.pth")
     else:
-        torch.save(FE, "Models/mix/extractor/FE_lambda10.pth")
-        torch.save(CF, "Models/mix/extractor/FE_CF_lambda10.pth")
-        torch.save(MI, "Models/mix/extractor/FE_MI_lambda10.pth")
+        torch.save(FE, "Models/mix/extractor/FE.pth")
+        torch.save(CF, "Models/mix/extractor/FE_CF.pth")
+        torch.save(MI, "Models/mix/extractor/FE_MI.pth")
 
-    np.array(train_extractor.global_loss).tofile('Result/mix/extractor/loss_extractor_lambda10.np')
-    np.array(train_extractor.target_loss).tofile('Result/mix/extractor/loss_target_lambda10.np')
-    np.array(train_extractor.information).tofile('Result/mix/extractor/loss_information_lambda10.np')
-    np.array(train_extractor.cf_test_loss).tofile('Result/mix/extractor/loss_extractor_lambda10_test.np')
-    np.array(train_extractor.cf_test_acc).tofile('Result/mix/extractor/acc_extractor_lambda10_test.np')
     return FE
 
 
@@ -118,15 +113,12 @@ def get_ZFE():
     except KeyboardInterrupt:
         pass
     if torch.cuda.device_count() > 1:
-        torch.save(FE.module, "Models/mix/extractor/FE_lambda0.pth")
-        torch.save(CF.module, "Models/mix/extractor/FE_CF_lambda0.pth")
+        torch.save(FE.module, "Models/mix/extractor/FE.pth")
+        torch.save(CF.module, "Models/mix/extractor/FE_CF.pth")
     else:
-        torch.save(FE, "Models/mix/extractor/FE_lambda0.pth")
-        torch.save(CF, "Models/mix/extractor/FE_CF_lambda0.pth")
+        torch.save(FE, "Models/mix/extractor/FE.pth")
+        torch.save(CF, "Models/mix/extractor/FE_CF.pth")
 
-    np.array(train_extractor.global_loss).tofile('Result/mix/extractor/loss_extractor_lambda0.np')
-    np.array(train_extractor.cf_test_loss).tofile('Result/mix/extractor/loss_extractor_lambda0_test.np')
-    np.array(train_extractor.cf_test_acc).tofile('Result/mix/extractor/acc_extractor_lambda0_test.np')
     return FE
 
 
@@ -149,11 +141,10 @@ def get_zdecoder(FE_path):
     except KeyboardInterrupt:
         pass
     if torch.cuda.device_count() > 1:
-        torch.save(DC.module, "Models/gender/decoder/decoder_WithoutLabel_lambda0.pth")
+        torch.save(DC.module, "Models/gender/decoder/decoder.pth")
     else:
-        torch.save(DC, "Models/gender/decoder/decoder_WithoutLabel_lambda0.pth")
+        torch.save(DC, "Models/gender/decoder/decoder.pth")
 
-    np.array(train_decoder.z_global_loss).tofile('Result/gender/decoder/loss_WithoutLabel_lambda0.np')
     return DC
 
 
@@ -178,13 +169,10 @@ def get_classifier(FE_path):
         pass
 
     if torch.cuda.device_count() > 1:
-        torch.save(CF.module, "Models/mix/smiling/Classifier_lambda10.pth")
+        torch.save(CF.module, "Models/mix/smiling/Classifier.pth")
     else:
-        torch.save(CF, "Models/mix/smiling/Classifier_lambda10.pth")
+        torch.save(CF, "Models/mix/smiling/Classifier.pth")
 
-    np.array(train_extractor.cf_train_loss).tofile('Result/mix/smiling/loss_classifier_lambda10_train.np')
-    np.array(train_extractor.cf_test_loss).tofile('Result/mix/smiling/loss_classifier_lambda10_test.np')
-    np.array(train_extractor.cf_test_acc).tofile('Result/mix/smiling/acc_classifier_lambda10_test.np')
     return CF
 
 
