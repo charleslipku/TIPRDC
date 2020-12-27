@@ -28,3 +28,18 @@ Tested stable dependencies:
 
 ### How to Train from Scratch
 ---
+- **Image/** is the folder for image classification.
+    - VGG16.py is the intact VGG Network.
+    - SegmentVGG16.py split the VGG into 2 parts: feature extractor and classifier.
+    - MutualInformation.py is the network for computing mutual information. It also contains the computation for the loss wich evalutates the mutual information.
+    - pre_train.py is the module for pre-training. It will return a slightly pre-trained feature extractor and a classifier.
+    - main.py is the main process. It will call train_decoder and train_extractor to find a balance in adversarial training. 
+    - decoder.py contains two decoders which imitate the real attacker, who will retrieve the input image from intermediate representations. One of the decoder can only make use of the encoded intermediates - we hope it get nearly nothing, the other can take the private information into consideration - we hope it at least get something.
+    - MS_SSIM.py is the loss function that evaluates the similarity between the raw image and the image being retrieved from the attacker.
+
+- **Text/** is the folder for text classification.
+    - LSTM.py contains a feature extractor module, a classifier module, and a mutual information module. They are the counterparts of SegmentVGG16.py and MUtualInformation.py in **Image** folder.
+    - data_handler.py will tag the raw data in the *DIAL* dataset.
+    - mydataset.py works for the PyTorch Dataloader.
+    - pre_train.py will get a slightly pre-trained text feature extractor and a classifier.
+    - main.py is the main process. It works together with train_extractor.py to run the adversarial training on text classification task.
